@@ -1,0 +1,38 @@
+﻿@using ProjeCore.Models
+@model List<Personel>
+
+@{
+    ViewData["Title"] = "BirimDetay";
+    Layout = "~/Views/Shared/_TestLayout.cshtml";
+}
+
+
+<link href="~/twitter-bootstrap/css/bootstrap.css" rel="stylesheet" />
+<link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+
+<br />
+<h2>Birim Detay Sayfası</h2>
+<br />
+<h2>@ViewBag.brm</h2>
+<br />
+
+<table class="table table-bordered">
+    <tr>
+        <th>ID</th>
+        <th>AD</th>
+        <th>SOYAD</th>
+        <th>ŞEHİR</th>
+    </tr>
+    @foreach (var d in Model)
+    {
+        <tr>
+            <td>@d.PersonelID</td>
+            <td>@d.Ad</td>
+            <td>@d.Soyad</td>
+            <td>@d.Sehir</td>
+        </tr>
+    }
+
+</table>
+
+

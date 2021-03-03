@@ -1,0 +1,56 @@
+﻿@using X.PagedList.Mvc.Core;
+@using X.PagedList;
+
+@using ProjeCore.Models;
+@model IPagedList<Birim>;
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_TestLayout.cshtml";
+}
+
+
+<link href="~/twitter-bootstrap/css/bootstrap.css" rel="stylesheet" />
+<link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+
+<br />
+<b>@Model.Count() Model listelendi.</b>
+<br />
+
+<table class="table table-bordered">
+    <tr>
+        <th>ID</th>
+        <th>Departman Adı</th>
+    </tr>
+    @foreach (var d in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => d.BirimID)</td>
+            <td>@Html.DisplayFor(modelItem => d.BirimAd)</td>
+        </tr>
+    }
+</table>
+
+<br />
+
+@Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page = page }),
+    new X.PagedList.Mvc.Core.Common.PagedListRenderOptions
+    {
+        DisplayItemSliceAndTotal = true,
+        ContainerDivClasses = new[] { "navigation" },
+        LiElementClasses = new[] { "page-item" },
+        PageClasses = new[] { "page-link" },
+    })
+
+@section ScriptsPagi{
+    <script>
+
+        $(document).ready(function (){
+            $('ul.pagination > li.disabled > a').addClass('page-link');
+        });
+
+        //$(function () {
+        //    $('ul.pagination > li.disabled > a').addClass('page-link');
+        //});
+    </script>
+}

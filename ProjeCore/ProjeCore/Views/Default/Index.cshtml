@@ -1,0 +1,33 @@
+﻿@using ProjeCore.Models;
+@model List<Birim>;
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_TestLayout.cshtml";
+}
+
+<link href="~/twitter-bootstrap/css/bootstrap.css" rel="stylesheet" />
+<link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+
+<table class="table table-bordered">
+    <tr>
+        <th>ID</th>
+        <th>Departman</th>
+        <th>Sil</th>
+        <th>Güncelle</th>
+        <th>Detaylar</th>
+    </tr>
+    @foreach (var d in Model)
+    {
+        <tr>
+            <td>@d.BirimID</td>
+            <td>@d.BirimAd</td>
+            <td><a href="/Default/BirimSil/@d.BirimID" class="btn btn-danger">Sil</a></td>
+            <td><a href="/Default/BirimGetir/@d.BirimID" class="btn btn-success">Güncelle</a></td>
+            <td><a href="/Default/BirimDetay/@d.BirimID" class="btn btn-default" style="background-color:#0094ff">Detaylar</a></td>
+        </tr>
+    }
+
+</table>
+<a href="/Default/YeniBirim/" class="btn btn-primary">Yeni Birim</a>
+
